@@ -14,7 +14,7 @@ The notation $N_0 \equiv -174 \, \text{dBm/Hz}$ represents the noise power densi
 
 The formula to calculate the thermal noise power ($N$) in dBm over a given bandwidth ($B$) in hertz is:
 
-$ N = -174 \, \text{dBm/Hz} + 10 \log_{10}(B) $
+$N = -174 \, \text{dBm/Hz} + 10 \log_{10}(B)$
 
 Here's a breakdown of the formula components:
 - $-174 \, \text{dBm/Hz}$ is the noise power density at room temperature.
