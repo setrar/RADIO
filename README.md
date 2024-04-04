@@ -61,7 +61,7 @@ Don't forget your calculator.
 
 ### Syllabus
 
-| | | |
+| Date | Lesson | Teacher |
 |-|-|-|
 | 23.2.	| Introduction, Requirements and Challenges, Noise modeling	| Florian remote  |
 | 8.3.	| Antennas and Propagation	                                | Florian remote  |
