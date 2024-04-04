@@ -59,7 +59,9 @@ Both exams will be carried out on moodle using the Safe Exam Browser (https://do
 
 Don't forget your calculator.
 
-| Syllabus |
+### Syllabus
+
+| | | |
 |-|-|-|
 | 23.2.	| Introduction, Requirements and Challenges, Noise modeling	| Florian remote  |
 | 8.3.	| Antennas and Propagation	                                | Florian remote  |
