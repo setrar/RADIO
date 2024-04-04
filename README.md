@@ -59,21 +59,22 @@ Both exams will be carried out on moodle using the Safe Exam Browser (https://do
 
 Don't forget your calculator.
 
-Syllabus
-23.2.	Introduction, Requirements and Challenges, Noise modeling	Florian - remote
-8.3.	Antennas and Propagation	Florian - remote
-15.3.	link budgets - wave propagation	Christoph Mecklenbrauker - TU Wien
-29.3.	First Lab session: link budgets	Mohsen
-5.4.	 Statistical Channel Characterization	Florian
-12.4.	Antennas	Dominique Nussbaum - Orange - 
-19.4.	Second Lab session: Fading distributions	Mohsen
-26.4.	Cellular IoT	Elena Lukashova - Sequans Communications
-7.5.	Third lab session: Cellular IoT	Elena Lukashova - Sequans Communications
-17.5.	Wideband channels	Florian - remote
-24.5.	intro into 5G and OAIBOX	Paolo Marques - Allbesmart 
-31.5.	Fourth lab session (OAIBOX)	Mohsen
-7.6.	Open RAN	Florian and/or Raymond
-14.6.	Fifth lab session (OAIBOX - ORAN?)	Mohsen
+| Syllabus |
+|-|-|-|
+| 23.2.	| Introduction, Requirements and Challenges, Noise modeling	| Florian remote  |
+| 8.3.	| Antennas and Propagation	                                | Florian remote  |
+| 15.3.	| link budgets - wave propagation	                          | Christoph Mecklenbrauker TU Wien |
+| 29.3.	| First Lab session: link budgets	                          | Mohsen |
+| 5.4.	| Statistical Channel Characterization	                    | Florian |
+| 12.4.	| Antennas	                                                | Dominique Nussbaum - Orange |
+| 19.4.	| Second Lab session: Fading distributions	                | Mohsen |
+| 26.4.	| Cellular IoT	                                            | Elena Lukashova - Sequans Communications |
+| 7.5.	| Wideband channels	                                        | Florian - remote |
+| 17.5.	| Third lab session: Cellular IoT                           | Elena Lukashova - Sequans Communications |
+| 24.5.	| intro into 5G and OAIBOX	                                | Luis Pereira - Allbesmart |
+| 31.5.	| Fourth lab session (OAIBOX)	                              | Mohsen |
+| 7.6.	| Open RAN	                                                | Raymond Knopp |
+| 14.6.	| Fifth lab session                                         | (OAIBOX - ORAN?)	Mohsen |
 
 Labs
 See syllabus above for timetable and assignments
