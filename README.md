@@ -28,7 +28,7 @@ Cellular Architectures : Link budget analysis, cellular coverage, duplexing stra
 Course notes
 The course will be based on part I and part II of the book "Wireless Communications" by Andreas Molisch (3rd edition, IEEE Press 2022).
 
-Also check out http://bcs.wiley.com/he-bcs/Books?action=index&itemId=1119117208&bcsId=12347 for additional material. Solutions to the exercises in the book can be found File link : datas/teaching/courses/RADIO/solutions/Solutions_manual.pdf.
+Also check out http://bcs.wiley.com/he-bcs/Books?action=index&itemId=1119117208&bcsId=12347 for additional material. Solutions to the exercises in the book can be found File link : [datas/teaching/courses/RADIO/solutions/Solutions_manual.pdf](solutions/Solutions_manual.pdf).
 
 Supplementary reading: Simon Saunders, "Antennas and Propagation for Wireless Communication Systems", Wiley 1999.
 
