@@ -46,9 +46,9 @@ Some knowledge of Matlab is also beneficial for the lab sessions.
 Grading
 The better of the following two methods will be applied
 
-Lab sessions & Quizzes: 25%, Mid-term exam: 25%, Final exam: 50%
-Lab sessions & Quizzes: 25%, Final exam: 75%
-Both Lab sessions and Final result must have at least 10 points (50%)
+- Lab sessions & Quizzes: 25%, Mid-term exam: 25%, Final exam: 50%
+- Lab sessions & Quizzes: 25%, Final exam: 75%
+- Both Lab sessions and Final result must have at least 10 points (50%)
 
 Exam rules
 The mid-term will be open book (Book Molisch + course handouts only!). Duration: 1h.
