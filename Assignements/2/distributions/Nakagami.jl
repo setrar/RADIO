@@ -16,7 +16,7 @@ function pdf(d::Nakagami, x::Real)
 end
 
 function rand(d::Nakagami, n::Int=1)
-    return (sqrt(d.ω / d.μ) * sqrt(rand(Gamma(d.μ, 1), n)))
+    return (√(d.ω / d.μ) * √(rand(Gamma(d.μ, 1), n)))
 end
 
 function logpdf(d::Nakagami, x::Real)
@@ -28,7 +28,7 @@ end
 
 function fit_mle(::Type{Nakagami}, data::Vector{T}) where T
     positive_data = data[data .>= 0]
-    μ_hat = (mean(positive_data) ^ 2) / mean(positive_data .^ 2)
-    ω_hat = mean(positive_data .^ 2)
-    Nakagami(μ_hat, ω_hat)
+    μ̂ = (mean(positive_data) ^ 2) / mean(positive_data .^ 2)
+    ω̂ = mean(positive_data .^ 2)
+    Nakagami(μ̂, ω̂)
 end
