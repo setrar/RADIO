@@ -16,7 +16,11 @@ function pdf(d::Nakagami, x::Real)
 end
 
 function rand(d::Nakagami, n::Int=1)
-    return (√(d.ω / d.μ) * √(rand(Gamma(d.μ, 1), n)))
+    if n == 1
+        return sqrt(d.ω / d.μ) * sqrt(rand(Gamma(d.μ, 1)))
+    else
+        return sqrt(d.ω / d.μ) .* sqrt.(rand(Gamma(d.μ, 1), n))
+    end
 end
 
 function logpdf(d::Nakagami, x::Real)
