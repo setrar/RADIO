@@ -11,10 +11,10 @@ clear
 % Configurable simulation parameters
 
 % Repetition level
-R = 150;
+R = 32;
 
 % Number of transmissions
-T = 1;
+T = 100;
 
 % Signal to Noise Ratio (SNR)
 snrRange = -20:10:30;
@@ -153,7 +153,7 @@ for snrCnt = 1:length(snrRange)
             y_norm = y / r;
     
             % Extract pilot subcarriers from current signal
-            yp = yr(kp,:); 
+            yp = y_norm(kp,:); 
 
             % Least square channel estimation for pilots and average over symbols and subcarriers
             h_est = mean(mean(yp ./ p, 2));
@@ -178,25 +178,25 @@ for snrCnt = 1:length(snrRange)
             evm_rep(r) = evm;
             
             % Display the result
-            fprintf('EVM MEAN REP: %.2f%%\n', evm_rep(r));
+            % fprintf('EVM MEAN REP: %.2f%%\n', evm_rep(r));
         end
 
         % Calculate EVM per transmission
-        evm_trans(t) = mean(evm_rep);
+        evm_trans(t) = evm_rep(end);
         % Display the result
-        fprintf('EVM TRANS: %.2f%%\n', evm_trans(t));
+        % fprintf('EVM TRANS: %.2f%%\n', evm_trans(t));
 
     end
 
     % Calculate EVM per SNR
     evm_snr(snrCnt) = mean(evm_trans);
     % Display the result
-    fprintf('EVM SNR: %.2f%%\n', evm_snr(snrCnt));
+    % fprintf('EVM SNR: %.2f%%\n', evm_snr(snrCnt));
 end
 
 % Plot EVM vs SNR
 figure;
-plot(snrRange, evm_snr, '-o', 'LineWidth', 2);
+plot(snrRange, 10 * log10(evm_snr), '-o', 'LineWidth', 2);
 xlabel('SNR (dB)');
 ylabel('EVM (%)');
 title('EVM vs SNR');
