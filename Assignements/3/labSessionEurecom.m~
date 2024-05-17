@@ -11,7 +11,7 @@ clear
 % Configurable simulation parameters
 
 % Repetition level
-R = 150;
+R = 100;
 
 % Number of transmissions
 T = 1;
@@ -53,9 +53,6 @@ combEnabled = 1;
 
 % Limits of x-y constellation in plots
 constLimit = 2;
-
-% Initialize result storage
-evm_snr = zeros(1, length(snrRange));
 
 % SNR loop
 for snrCnt = 1:length(snrRange)
@@ -102,14 +99,12 @@ for snrCnt = 1:length(snrRange)
     % Reception
     
     % Loop over transmissions
-    evm_trans = zeros(1, T);  % Initialize storage for EVM of each transmission
     for t = 1:T
 
         % Initialize receive signal
         y = zeros(K, L);
 
         % Loop over repetitions
-        evm_rep = zeros(1, R);  % Initialize storage for EVM of each repetition
         for r = 1:R
     
             % Generate complex Gaussian noise
@@ -182,7 +177,7 @@ for snrCnt = 1:length(snrRange)
         end
 
         % Calculate EVM per transmission
-        evm_trans(t) = mean(evm_rep);
+        evm_trans(t) = evm_rep;
         % Display the result
         fprintf('EVM TRANS: %.2f%%\n', evm_trans(t));
 
@@ -194,7 +189,7 @@ for snrCnt = 1:length(snrRange)
     fprintf('EVM SNR: %.2f%%\n', evm_snr(snrCnt));
 end
 
-% Plot EVM vs SNR
+% % Plot EVM vs SNR
 figure;
 plot(snrRange, evm_snr, '-o', 'LineWidth', 2);
 xlabel('SNR (dB)');
