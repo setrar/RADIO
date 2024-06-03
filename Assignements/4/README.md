@@ -8,11 +8,11 @@ Please read the OAIBOX manual and in particular Labs 1, 2, 3, and 4 during the l
 
 OAIBOX5GLabManual.pdf OAIBOX5GLabManual.pdf30 May 2024, 3:48 PM
 
-> Submission status
-> Group	Group C
-> Submission status	Nothing has been submitted for this assignment
-> Grading status	Not graded
-> Time remaining	25 days 9 hours remaining
-> Last modified	-
-> Submission comments	
-> Comments (0)
+  > Submission status
+  > Group	Group C
+  > Submission status	Nothing has been submitted for this assignment
+  > Grading status	Not graded
+  > Time remaining	25 days 9 hours remaining
+  > Last modified	-
+  > Submission comments	
+  > Comments (0)
