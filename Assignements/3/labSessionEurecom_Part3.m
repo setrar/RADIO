@@ -19,7 +19,7 @@ R = 1;
 T = 1;
 
 % Signal to Noise Ratio (SNR)
-snrRange = -20:10:30;
+snrRange = -20:3:30;
 % snrRange = 30;
 
 
@@ -153,8 +153,13 @@ function evm_snr = runOFDM(snrRange, stoError, K, L, kp, P, R, T, cfoErrorHz, co
 
                     symbolTd = yTime(:,symbolCnt).';
 
-                    % Apply CFO correction using the function
-                    symbolCorrected = applyCFOCorrection(symbolTd, cfoErrorHz, r, symbolCnt);
+                    % Add CFO
+                    samplingRate = 1.92e6;
+                    cfoPhaseRamp    = 2*pi*cfoErrorHz/samplingRate;
+                    cfoSampleInit   = (r-1)*length(symbolTd)*L + (symbolCnt-1)*length(symbolTd);
+                    % Pay attention to numeric accuracy, this implementation could not be used for infinite CFO generation
+                    cfoVector       = exp(1j*cfoPhaseRamp*((0:length(symbolTd)-1)+cfoSampleInit));
+                    symbolTd        = symbolTd .* cfoVector;
 
                     % Detection 
                     % Remove CP containing STO error
@@ -167,9 +172,6 @@ function evm_snr = runOFDM(snrRange, stoError, K, L, kp, P, R, T, cfoErrorHz, co
 
                     % Extract central subcarriers 
                     yr(:,symbolCnt) = symbolFd(startSc:startSc+K-1);
-
-                    % Store corrected symbol in time domain
-                    yTime(:,symbolCnt) = symbolCorrected.';
 
                 end
 
@@ -185,6 +187,16 @@ function evm_snr = runOFDM(snrRange, stoError, K, L, kp, P, R, T, cfoErrorHz, co
                 % Least square channel estimation for pilots and average over symbols and subcarriers
                 h_est = mean(mean(yp ./ p, 2));
                 
+                % average 
+                pilots = yp ./ p;
+                pilots_average = mean(pilots, 2);
+                plot(angle(pilots_average))
+                hold on
+                % vq = interp1(kp,pilots_average,1:K,"spline","extrap");
+                % plot(kp,pilots_average,'o',1:K,vq,':.');
+                % title('(Default) Linear Interpolation');
+                % hold on
+
                 % Zero-forcing equalization
                 x_est = y_norm ./ h_est;
 
@@ -200,19 +212,5 @@ function evm_snr = runOFDM(snrRange, stoError, K, L, kp, P, R, T, cfoErrorHz, co
         evm_snr(snrCnt) = mean(evm_trans);
     end
 end
-
-function symbolCorrected = applyCFOCorrection(symbolTd, cfoErrorHz, r, symbolCnt)
-    % Parameters for CFO compensation
-    samplingRate = 1.92e6;
-    cfoPhaseRamp = 2*pi*cfoErrorHz/samplingRate;
-    cfoSampleInit = (r-1)*length(symbolTd) + (symbolCnt-1)*length(symbolTd);
-    
-    % CFO vector generation
-    cfoVector = exp(1j*cfoPhaseRamp*((0:length(symbolTd)-1)+cfoSampleInit));
-    
-    % Apply CFO correction to symbol
-    symbolCorrected = symbolTd .* cfoVector;
-end
-
 
 

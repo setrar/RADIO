@@ -63,6 +63,9 @@ for snrCnt = 1:length(snrRange)
     % Noise power
     N = 10^(-snrRange(snrCnt)/10);
 
+    % Initialize EVM accumulator
+    evm_accumulated = 0;
+
     % Transmission
     
     % Generate QPSK symbols
@@ -128,7 +131,7 @@ for snrCnt = 1:length(snrRange)
                 cfoPhaseRamp    = 2*pi*cfoErrorHz/samplingRate;
                 cfoSampleInit   = (r-1)*length(symbolTd)*L + (symbolCnt-1)*length(symbolTd);
                 % Pay attention to numeric accuracy, this implementation could not be used for infinite CFO generation
-                cfoVector       = exp(1j*cfoPhaseRamp*([0:length(symbolTd)-1]+cfoSampleInit));
+                cfoVector       = exp(1j*cfoPhaseRamp*((0:length(symbolTd)-1)+cfoSampleInit));
                 symbolTd        = symbolTd .* cfoVector;
 
                 % Detection 
@@ -192,6 +195,14 @@ for snrCnt = 1:length(snrRange)
     evm_snr(snrCnt) = mean(evm_trans);
     % Display the result
     % fprintf('EVM SNR: %.2f%%\n', evm_snr(snrCnt));
+
+    % Check against target EVM
+    if mean(evm_trans) <= targetEvm
+        disp(['Successful decoding achieved at SNR = ' num2str(snrRange(snrCnt)) ' dB']);
+    else
+        disp(['EVM too high at SNR = ' num2str(snrRange(snrCnt)) ' dB. Further optimization needed.']);
+    end
+
 end
 
 % Plot EVM vs SNR
