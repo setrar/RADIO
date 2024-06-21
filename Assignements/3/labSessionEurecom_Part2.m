@@ -24,7 +24,7 @@ snrRange = -20:10:30;
 
 
 % STO error in samples, MUST BE NEGATIVE
-stoError = -2;
+stoError = -4;
 if(stoError > 0)
     error('STO error in samples MUST BE NEGATIVE')
 end
@@ -150,26 +150,42 @@ function evm_snr = runOFDM(snrRange, stoError, K, L, kp, P, R, T, cfoErrorHz, co
 
                 yr = zeros(K, L);
                 for symbolCnt = 1:L
-
+                    % Extract current symbol
                     symbolTd = yTime(:,symbolCnt).';
-
+    
                     % Apply CFO correction using the function
                     symbolCorrected = applyCFOCorrection(symbolTd, cfoErrorHz, r, symbolCnt);
 
-                    % Detection 
-                    % Remove CP containing STO error
-                    symbolTd = symbolTd(cpLength+1+stoError:end+stoError);
-
-                    % FFT and fftshift
-                    symbolFd = fftshift(fft(symbolTd));
-
-                    startSc = (128 - 72)/2 + 1;
-
-                    % Extract central subcarriers 
-                    yr(:,symbolCnt) = symbolFd(startSc:startSc+K-1);
+                    % Apply FFT and processing (if stoError = 0)
+                    if stoError == 0
+                         % FFT and fftshift
+                        symbolFd = fftshift(fft(symbolCorrected));
+        
+                        % Remove CP (no STO to remove)
+                        symbolFd = symbolFd(cpLength+1:end);
+        
+                        % Extract central subcarriers 
+                        startSc = (128 - K)/2 + 1;
+                        yr(:,symbolCnt) = symbolFd(startSc:startSc+K-1);
+                    else               
+    
+                        % Detection 
+                        % Remove CP containing STO error
+                        symbolTd = symbolTd(cpLength+1+stoError:end+stoError);
+    
+                        % FFT and fftshift
+                        symbolFd = fftshift(fft(symbolTd));
+    
+                        startSc = (128 - 72)/2 + 1;
+    
+                        % Extract central subcarriers 
+                        yr(:,symbolCnt) = symbolFd(startSc:startSc+K-1);
+    
+                    end
 
                     % Store corrected symbol in time domain
                     yTime(:,symbolCnt) = symbolCorrected.';
+
 
                 end
 
