@@ -2065,10 +2065,10 @@ plot(h_est, '.')
 qpsk
 %-- 2024-06-17, 7:03 AM --%
 labSessionEurecom
-h_est = yp./p
-h_est2 = mean(h_est,2)
+h_est = yp./P;
+h_est2 = mean(h_est,2);
 h_interp = interp1(kp,h_est2,1:K, "spline")
-h_est = yp./p; plot(h_est) plot(h_est, '.') plot(h_est(1,:), '.')
+h_est = yp./P; plot(h_est) plot(h_est, '.') plot(h_est(1,:), '.')
 plot(h_est(1,:), '.')
 clear all
 labSessionEurecom
@@ -2078,7 +2078,7 @@ h_interp = interp1(kp,h_est2,1:K, "spline")
 h_interp = interp1(kp,h_est2,1:K, 'spline', 'extrap');
 pcolor(abs(x_orig))
 h_est2 = mean(h_est,2)
-h_est = yp./p;
+h_est = yp./P;
 h_est2 = mean(h_est,2);
 h_interp = interp1(kp,h_est2,1:K, 'spline', 'extrap');
 plot(h_interp)
